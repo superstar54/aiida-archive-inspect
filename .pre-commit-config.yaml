@@ -1,0 +1,51 @@
+---
+ci:
+    autoupdate_schedule: quarterly
+
+repos:
+
+    - repo: https://github.com/pre-commit/pre-commit-hooks
+      rev: v4.5.0
+      hooks:
+          - id: check-json
+          - id: check-yaml
+          - id: end-of-file-fixer
+          - id: trailing-whitespace
+            exclude: miscellaneous/structures/SiO2.xyz
+
+    - repo: https://github.com/jumanjihouse/pre-commit-hook-yamlfmt
+      rev: 0.2.3
+      hooks:
+          - id: yamlfmt
+            exclude: tests
+
+    - repo: https://github.com/sirosen/check-jsonschema
+      rev: 0.27.3
+      hooks:
+          - id: check-github-workflows
+
+    - repo: https://github.com/nbQA-dev/nbQA
+      rev: 1.7.1
+      hooks:
+          - id: nbqa-pyupgrade
+            args: [--py38-plus]
+          - id: nbqa-isort
+            args: [--profile=black]
+          - id: nbqa-ruff
+            # suppress E402
+            args: [--ignore=E402]
+
+    - repo: https://github.com/kynan/nbstripout
+      rev: 0.6.1
+      hooks:
+          - id: nbstripout
+
+    - repo: https://github.com/astral-sh/ruff-pre-commit
+      # Ruff version.
+      rev: v0.1.11
+      hooks:
+        # Run the linter.
+          - id: ruff
+            args: [--fix]
+        # Run the formatter.
+          - id: ruff-format
