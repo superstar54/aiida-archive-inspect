@@ -8,7 +8,7 @@ template = """
   <th style="text-align:center">Archive Inspect</th>
 <tr>
   <td valign="top"><ul>
-    <li><a href="{appbase}/archive_inspect.ipynb" target="_blank">Archive inspect</a></li>
+    <li><a href="{appbase}/stored_archives.ipynb" target="_blank">Stored Archives</a></li>
   </ul></td>
 </tr>
 </table>
