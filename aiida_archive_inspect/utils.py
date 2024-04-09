@@ -1,3 +1,22 @@
+def get_user_path_and_mode(path):
+    """Get the user URL from the path.
+    path could be:
+    - /user/superstar54/notebooks/apps/aiida-archive-inspect/detail.ipynb
+    then user_path = /user/superstar54/, mode = notebooks
+    - /user/superstar54/apps/apps/aiida-archive-inspect/overview.ipynb
+    then user_path = /user/superstar54/, mode = apps
+    - /apps/apps/aiida-archive-inspect/overview.ipynb
+    then user_path = "", mode = apps
+    """
+    anchor = "/apps/aiida-archive-inspect"
+
+    app_path = path.split(anchor)[0]
+    # Splitting the path by the last occurrence of '/'
+    user_path, separator, mode = app_path.rpartition("/")
+
+    return user_path, mode
+
+
 def generate_table(group):
     import ipywidgets as ipw
     from aiida import orm
