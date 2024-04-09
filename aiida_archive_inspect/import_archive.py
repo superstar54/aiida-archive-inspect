@@ -4,6 +4,7 @@ import ipywidgets as ipw
 from aiida import profile_context, orm
 from aiida.manage.configuration import get_config
 from aiida.common.folders import SandboxFolder
+from aiida_archive_inspect.utils import get_user_path_and_mode
 
 
 class ImportArchive(ipw.VBox):
@@ -48,6 +49,7 @@ class ImportArchive(ipw.VBox):
         ]
 
     def on_import_button_clicked(self, b):
+        user_path, _ = get_user_path_and_mode(self.url.path)
         profile = self.profile_selector.value
         filename = self.filename
         record_id = self.record_id
@@ -66,7 +68,7 @@ class ImportArchive(ipw.VBox):
                 )
 
             self.open_notebook_button.value += f"""
-            <a href="/apps/apps/aiida-archive-inspect/overview.ipynb?group_pk={group_pk}&profile={profile}" target="_blank">
+            <a href="{user_path}/apps/apps/aiida-archive-inspect/overview.ipynb?group_pk={group_pk}&profile={profile}" target="_blank">
                 <button>Inspect the archive</button>
             </a>
             """
