@@ -1,6 +1,6 @@
 # Archive Inspect
 
-A app to inspect a AiiDA archive file
+An app to inspect a AiiDA archive file
 
 ## Installation
 
